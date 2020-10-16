@@ -2,7 +2,7 @@ fun main(args: Array<String>){
     println("Write the expression");
 
     fun mainCheck(line :Array<String>):Boolean {
-
+        //Функция проверки введенного выражения
         if (line.size<3) {
             print("\n" + "not enough arguments")
             return false
@@ -33,6 +33,7 @@ fun main(args: Array<String>){
 
 
     fun getData(expression: String): Array<String> {
+        //Достаю данные в массив
         val parts = expression.split(' ')
         var line = emptyArray<String>()
         for (s in parts) {
@@ -43,7 +44,13 @@ fun main(args: Array<String>){
         return line
     }
 
+    //Все выражение может состоять из 3 групп - 
+        // 1 - два числа и знак, которые мы берем сразу
+        // 2 - число и знак, берем к ответу следующими
+        // 3 - отдельные знаки, которые связывают различные части выражения, заключенные в скобки, например (1+1)
+    
     fun checkExpress(arg1 :String, arg2:String, arg3:String):String {
+        //Функция нахождения двух цифр и числа
         if ((arg1 in "0".."9")&&(arg2 in "0".."9")&&(!(arg3 in "0".."9"))) {
             arg1.toString()
             arg2.toString()
@@ -54,6 +61,7 @@ fun main(args: Array<String>){
         return " "
     }
 
+    // Для правильного прохода по строке ненужные мне (уже кинула их в ответ) числа и знаки заменяю на #
     fun changeLine(line:Array<String>, i: Int):Array<String> {
         line[i] = "#"
         line[i-1] = "#"
@@ -68,6 +76,7 @@ fun main(args: Array<String>){
     }
 
     fun ChangeOneLine(line:Array<String>, symb:String):Array<String> {
+        //Замена определенного символа из строки на #
         var i = line.size-1
         while (line[i]!=symb) {
             i--
@@ -77,6 +86,7 @@ fun main(args: Array<String>){
     }
 
     fun getIndexes(line :Array<String>, len : Int):Array<Int> {
+        //ЗДесь получаю индексы выражения, где у нас заканчиваются выражения в скобках
         var indexes = emptyArray<Int>()
         for (i in len downTo 1) {
             if ((line[i]=="#")&&(line[i-1]!="#")) {
@@ -87,10 +97,12 @@ fun main(args: Array<String>){
     }
 
     fun checkNumZnak(arg1 :String, arg2 :String):Boolean {
+        //Ищем число + знак
         return ((arg1 in "0".."9")&&(!(arg2 in "0".."9")))
     }
 
     fun checkExp(line :Array<String>):Boolean {
+        //Проверяем, остались ли символы в выражении
         for (l in line) {
             if (l!="#") return true
         }
@@ -98,6 +110,7 @@ fun main(args: Array<String>){
     }
 
     fun checkRight(line: Array<String>):Int {
+        //Кол-во нормальных символов в выражении
         var count = 0
         for (l in line) {
             if (l!="#") {
@@ -108,6 +121,7 @@ fun main(args: Array<String>){
     }
 
     fun getIndex(line :Array<String>, len : Int):Int {
+        //После того, как мы собрали сущности 2 числа+знак, нам нужно подсобрать к ним по порядку сущности число+знак
 
         var index = line.size-1
 
@@ -125,6 +139,7 @@ fun main(args: Array<String>){
     }
 
     fun findNum(index :Int, vararg line: String):String {
+        //Смотрим, остались ли числа
         for (i in line.size-1 downTo index) {
             if (line[i] in "0".."9") {
                 return line[i]
@@ -134,6 +149,7 @@ fun main(args: Array<String>){
     }
 
     fun findZnak(index :Int, vararg line: String):String {
+        //Смотрим, остались ли знаки
         for (i in line.size-1 downTo index) {
             if (!(line[i] in "0".."9")&&line[i]!="#") {
                 return line[i]
@@ -143,6 +159,7 @@ fun main(args: Array<String>){
     }
 
     fun getPairs(line: Array<String>, lines:Array<String>) {
+        //Проходимся по строке, ищем все сущности цисло + знак
         val len = line.size - 1
 
         for (count in 0..lines.size-1) {
@@ -163,6 +180,7 @@ fun main(args: Array<String>){
 
 
     fun checkRemainer(line : Array<String>, lines : Array<String>):String {
+        //ищем остаток, то есть одиночные знаки или символы
         var result = " "
 
         var count = 0
@@ -206,6 +224,7 @@ fun main(args: Array<String>){
 
 
     fun getResult(line: Array<String>): String {
+        //собираем все в кучу
         val len = line.size - 1
         var lines = emptyArray<String>()
 
