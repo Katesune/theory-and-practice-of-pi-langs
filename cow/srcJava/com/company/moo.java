@@ -59,13 +59,7 @@ class Compile {
 
         try {
             byte[] bytes = str.getBytes("ASCII");
-
-            FileWriter writer = new FileWriter("result.txt", true);
-            BufferedWriter bufferWriter = new BufferedWriter(writer);
             System.out.print(c);
-            bufferWriter.write(c);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
