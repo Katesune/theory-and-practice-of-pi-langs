@@ -53,14 +53,15 @@ class Compile {
         }
     }
 
-    public void enter(char c) {
+   public void enter(char c) {
 
         String str = Character.toString(c);
 
         try {
             byte[] bytes = str.getBytes("ASCII");
             System.out.print(c);
-        } catch (IOException e) {
+            System.out.print("  ");
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
