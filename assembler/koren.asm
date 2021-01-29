@@ -97,7 +97,7 @@ _repeat:
     jmp _repeat
     
 _end:    
-    dprint [b]
+    dprint [y]
     
     print nlen, n
     print len, message
@@ -107,7 +107,7 @@ _end:
     int     0x80
 
 section.data
-    num DD 23
+    my DD 23
     
     message DB "Done"
     len EQU $ - message
@@ -117,5 +117,5 @@ section.data
     
 section .bss
     count resd 1
-    a resd 1 
-    b resd 1
+    x resd 1 
+    y resd 1
